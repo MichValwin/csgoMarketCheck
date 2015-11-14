@@ -23,6 +23,7 @@ setInterval(Button(), 100);
 
 function Button(){
 	if(!write){
+		console.log("yess");
 		var b = document.getElementById("ButtonList");
 		if(b.clicked == true){
 			start();
