@@ -12,10 +12,15 @@
 
 //Create Button
 var button = document.createElement('BUTTON');
-button.setAttribute('ONCLICK', 'start()');
+button.setAttribute('id', 'ButtonList');
 var t = document.createTextNode("List!"); 
 button.appendChild(t);
 document.body.appendChild(button);
+
+var but = document.querySelector ("ButtonList");
+if (but) {
+    but.addEventListener ("click", start() , false);
+}
 
 
 function start(){
