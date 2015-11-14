@@ -17,11 +17,7 @@ var t = document.createTextNode("List!");
 button.appendChild(t);
 document.body.appendChild(button);
 
-var but = document.querySelector ("ButtonList");
-if (but) {
-    but.addEventListener ("click", start() , false);
-}
-
+document.getElementById('ButtonList').onclick = start();
 
 function start(){
 	var inspectsClass = document.getElementsByClassName("sih-market-action");
