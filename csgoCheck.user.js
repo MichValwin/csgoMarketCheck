@@ -22,12 +22,13 @@ var time = 0;
 var hasPrinted = false;
 var clicked = false;
 
-var lastWearValue = 1;
+var currentWear = 1;
+var lastWear = 1;
 
-var interval = setInterval(tryPutButton(), 300);
+var interval = setInterval(tryPutButton(), 3000);
 
 function tryPutButton(){
-    if(document.readyState == "complete" && time > 4000){
+    if(document.readyState == "complete"){
         //Create TextField
         textField = document.createElement('TEXTAREA');
         textField.type = "text";
@@ -47,16 +48,19 @@ function tryPutButton(){
         document.getElementById("ButtonList").addEventListener (
             "click", start, false
         );
-		time = 0;
+		console.log("Page Loaded");
         clearInterval(interval);
     }else{
-		time += 300;
 		console.log("Still loading Page");
 	}
 }
 
 function MainManager(){
 	if(currentArray < ArrayLength){
+		//Get Current Wear Value	
+		var wearValue = document.getElementsByClassName("wear value");
+		currentWear = parseFloat(wearValue[0].innerHTML);
+		
 		if(!clicked){
 			//
 			var allCheckInputs = document.getElementsByClassName("check-input");
@@ -69,10 +73,10 @@ function MainManager(){
 			//Click on it
 			allCheckLoadButton[1].click();
 			clicked = true;
-		}else if(time > 20000 || (lastWearValue != document.getElementsByClassName("wear value") && document.getElementsByClassName("wear value") != null)){
+		}else if(time > 20000 || lastWear != currentWear){
 			//Get the wear value
 			var wearValue = document.getElementsByClassName("wear value");
-			lastWearValue = wearValue;
+			lastWear = parseFloat(wearValue[0].innerHTML);
 			wearArray[currentArray] = parseFloat(wearValue[0].innerHTML);
 			time = 0;
 			clicked = false;
