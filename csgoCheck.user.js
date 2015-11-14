@@ -63,7 +63,7 @@ function MainManager(){
 			//Click on it
 			allCheckLoadButton[1].click();
 			clicked = true;
-		}else if(time > 10000){
+		}else if(time > 4100){
 			//Get the wear value
 			var wearValue = document.getElementsByClassName("wear value");
 			wearArray[currentArray] = parseFloat(wearValue[0].innerHTML);
@@ -72,13 +72,17 @@ function MainManager(){
 			currentArray++;
 		}
 		console.log("time: " + time);
-		console.log(document.readyState);
 		time += timeToRefresh;
 	}else if(currentArray >= ArrayLength && !hasPrinted){
 		//Print
+		var para = document.createElement("P");
+		var text = "";
 		for(i = 0; i < pricesArray.length; i++){
-			console.log(pricesArray[i] + " " + wearArray[i]);
+			text += pricesArray[i] + " " + wearArray[i] + "<br>";
 		}
+		var t = document.createTextNode(text);
+		para.appendChild(t);
+		document.body.appendChild(para);
 		hasPrinted = true;
 	}
 
