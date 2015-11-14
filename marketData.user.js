@@ -10,7 +10,7 @@
 // @downloadURL  https://raw.githubusercontent.com/miguel200761/csgoMarketCheck/master/marketData.js
 // ==/UserScript==
 
-var write = false;
+
 
 //Create Button
 var button = document.createElement('BUTTON');
@@ -19,18 +19,9 @@ var t = document.createTextNode("List!");
 button.appendChild(t);
 document.body.appendChild(button);
 
-setInterval(Button(), 100);
-
-function Button(){
-	if(!write){
-		console.log("yess");
-		var b = document.getElementById("ButtonList");
-		if(b.clicked == true){
-			start();
-			write = true;
-		}
-	}
-}
+document.getElementById("ButtonList").addEventListener (
+    "click", start, false
+);
 
 function start(){
 	var inspectsClass = document.getElementsByClassName("sih-market-action");
