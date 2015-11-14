@@ -21,26 +21,32 @@ var time = 0;
 var hasPrinted = false;
 var clicked = false;
 
+var interval = setInterval(tryPutButton(), 300);
 
-//Create TextField
-var textField = document.createElement('TEXTAREA');
-textField.type = "text";
-textField.setAttribute('id', 'textInspectData');
-textField.setAttribute('maxlength', 100000);
-textField.setAttribute('cols',20);
-textField.setAttribute('rows', 1);
-document.body.appendChild(textField);
+function tryPutButton(){
+    if(document.readyState == "complete"){
+        //Create TextField
+        var textField = document.createElement('TEXTAREA');
+        textField.type = "text";
+        textField.setAttribute('id', 'textInspectData');
+        textField.setAttribute('maxlength', 100000);
+        textField.setAttribute('cols',20);
+        textField.setAttribute('rows', 1);
+        document.body.appendChild(textField);
 
-//Create Button
-var button = document.createElement('BUTTON');
-button.setAttribute('id', 'ButtonList');
-var t = document.createTextNode("Calculate!"); 
-button.appendChild(t);
-document.body.appendChild(button);
+        //Create Button
+        var button = document.createElement('BUTTON');
+        button.setAttribute('id', 'ButtonList');
+        var t = document.createTextNode("Calculate!"); 
+        button.appendChild(t);
+        document.body.appendChild(button);
 
-document.getElementById("ButtonList").addEventListener (
-    "click", start, false
-);
+        document.getElementById("ButtonList").addEventListener (
+            "click", start, false
+        );
+        clearInterval(interval);
+    }
+}
 
 function MainManager(){
 	if(currentArray < ArrayLength){
