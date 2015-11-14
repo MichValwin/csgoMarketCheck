@@ -46,7 +46,9 @@ function tryPutButton(){
             "click", start, false
         );
         clearInterval(interval);
-    }
+    }else{
+		console.log("Still loading Page");
+	}
 }
 
 function MainManager(){
@@ -82,10 +84,6 @@ function MainManager(){
 			text += pricesArray[i] + " " + wearArray[i] + '<br>';
 		}
 		para.innerHTML = text;
-		/*
-		var t = document.createTextNode(text);
-		para.appendChild(t);
-		*/
 		document.body.appendChild(para);
 		hasPrinted = true;
 	}
