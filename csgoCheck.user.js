@@ -27,7 +27,7 @@ var lastWearValue = 1;
 var interval = setInterval(tryPutButton(), 300);
 
 function tryPutButton(){
-    if(document.readyState == "complete"){
+    if(document.readyState == "complete" && time > 4000){
         //Create TextField
         textField = document.createElement('TEXTAREA');
         textField.type = "text";
@@ -47,8 +47,10 @@ function tryPutButton(){
         document.getElementById("ButtonList").addEventListener (
             "click", start, false
         );
+		time = 0;
         clearInterval(interval);
     }else{
+		time += 300;
 		console.log("Still loading Page");
 	}
 }
