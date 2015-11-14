@@ -11,6 +11,7 @@
 // ==/UserScript==
 
 var ArrayLength;
+var textField;
 
 var urlsArray;
 var pricesArray;
@@ -26,7 +27,7 @@ var interval = setInterval(tryPutButton(), 300);
 function tryPutButton(){
     if(document.readyState == "complete"){
         //Create TextField
-        var textField = document.createElement('TEXTAREA');
+        textField = document.createElement('TEXTAREA');
         textField.type = "text";
         textField.setAttribute('id', 'textInspectData');
         textField.setAttribute('maxlength', 100000);
