@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  Gives the data from any csgo weapon into a string
 // @author       Baldbyte ~ Miguel200761
-// @match        http://steamcommunity.com/market/listings/730
+// @match        http://steamcommunity.com/market/listings/730/*
 // @grant        none
 // @updateURL https://raw.githubusercontent.com/miguel200761/csgoMarketCheck/master/marketData.js
 // @downloadURL https://raw.githubusercontent.com/miguel200761/csgoMarketCheck/master/marketData.js
