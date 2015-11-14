@@ -76,6 +76,7 @@ function MainManager(){
 	}else if(currentArray >= ArrayLength && !hasPrinted){
 		//Print
 		var para = document.createElement("P");
+		para.setAttribute('style','font-size:160%');
 		var text = "";
 		for(i = 0; i < pricesArray.length; i++){
 			text += pricesArray[i] + " " + wearArray[i] + "<br>";
