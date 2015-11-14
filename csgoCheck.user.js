@@ -56,7 +56,7 @@ function MainManager(){
 			//Click on it
 			allCheckLoadButton[1].click();
 			clicked = true;
-		}else if(time > 3000){
+		}else if(time > 10000){
 			//Get the wear value
 			var wearValue = document.getElementsByClassName("wear value");
 			wearArray[currentArray] = parseFloat(wearValue[0].innerHTML);
@@ -65,6 +65,7 @@ function MainManager(){
 			currentArray++;
 		}
 		console.log("time: " + time);
+		console.log(document.readyState);
 		time += timeToRefresh;
 	}else if(currentArray >= ArrayLength && !hasPrinted){
 		//Print
