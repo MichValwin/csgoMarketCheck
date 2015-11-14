@@ -1,10 +1,10 @@
-// ==UserScript==
+/// ==UserScript==
 // @name         WeaponChecker
 // @namespace    https://github.com/miguel200761/csgoMarketCheck
 // @version      0.1
 // @description  Check
 // @author       Baldbyte ~ Miguel200761
-// @include      http://www.csgozone.net/#check
+// @match        http://www.csgozone.net/*
 // @grant        none
 // @updateURL    https://github.com/miguel200761/csgoMarketCheck/blob/master/csgoCheck.user.js
 // @downloadURL  https://github.com/miguel200761/csgoMarketCheck/blob/master/csgoCheck.user.js
@@ -21,8 +21,6 @@ var time = 0;
 var hasPrinted = false;
 var clicked = false;
 
-var allCheckInputs = document.getElementsByClassName("check-input");
-var allCheckLoadButton = document.getElementsByClassName("check-load-button");
 
 //Create TextField
 var textField = document.createElement('TEXTAREA');
@@ -47,6 +45,10 @@ document.getElementById("ButtonList").addEventListener (
 function MainManager(){
 	if(currentArray < ArrayLength){
 		if(!clicked){
+			//
+			var allCheckInputs = document.getElementsByClassName("check-input");
+			var allCheckLoadButton = document.getElementsByClassName("check-load-button");
+			
 			//Put the value to inspect
 			allCheckInputs[1].value = "";
 			allCheckInputs[1].value = urlsArray[currentArray];
