@@ -1,13 +1,13 @@
 // ==UserScript==
-// @name         WeaponMarketData
+// @name         WeaponChecker
 // @namespace    https://github.com/miguel200761/csgoMarketCheck
 // @version      0.1
 // @description  Check
 // @author       Baldbyte ~ Miguel200761
 // @include      http://www.csgozone.net/#check
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/miguel200761/csgoMarketCheck/master/marketData.js
-// @downloadURL  https://raw.githubusercontent.com/miguel200761/csgoMarketCheck/master/marketData.js
+// @updateURL    https://github.com/miguel200761/csgoMarketCheck/blob/master/csgoCheck.user.js
+// @downloadURL  https://github.com/miguel200761/csgoMarketCheck/blob/master/csgoCheck.user.js
 // ==/UserScript==
 
 var ArrayLength;
