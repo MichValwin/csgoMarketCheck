@@ -67,7 +67,7 @@ function MainManager(){
 			//Click on it
 			allCheckLoadButton[1].click();
 			clicked = true;
-		}else if(time > 20000 || lastWearValue != document.getElementsByClassName("wear value")){
+		}else if(time > 20000 || (lastWearValue != document.getElementsByClassName("wear value") && document.getElementsByClassName("wear value") != null){
 			//Get the wear value
 			var wearValue = document.getElementsByClassName("wear value");
 			lastWearValue = wearValue;
