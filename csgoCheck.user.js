@@ -79,10 +79,13 @@ function MainManager(){
 		para.setAttribute('style','font-size:160%');
 		var text = "";
 		for(i = 0; i < pricesArray.length; i++){
-			text += pricesArray[i] + " " + wearArray[i] + "<br>";
+			text += pricesArray[i] + " " + wearArray[i] + '<br>';
 		}
+		para.innerHTML = text;
+		/*
 		var t = document.createTextNode(text);
 		para.appendChild(t);
+		*/
 		document.body.appendChild(para);
 		hasPrinted = true;
 	}
