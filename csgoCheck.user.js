@@ -16,6 +16,7 @@ var textField;
 var urlsArray;
 var pricesArray;
 var wearArray;
+var patternArray;
 var timeToRefresh = 100;
 var currentArray = 0;
 var time = 0;
@@ -80,6 +81,9 @@ function MainManager(){
 			lastWear = currentWear;
 			console.log("last: " + lastWear);
 			wearArray[currentArray] = currentWear;
+			//patternArray
+			var patValue = document.getElementsByClassName("pattern value");
+			patternArray[currentArray] = parseFloat(patValue[0].innerHTML);
 			time = 0;
 			clicked = false;
 			currentArray++;
@@ -93,7 +97,7 @@ function MainManager(){
 		para.setAttribute('style','font-size:160%');
 		var text = "";
 		for(i = 0; i < pricesArray.length; i++){
-			text += pricesArray[i] + " " + wearArray[i] + '<br>';
+			text += pricesArray[i] + "  " + wearArray[i] + "     " + patternArray[i] + '<br>';
 		}
 		para.innerHTML = text;
 		document.body.appendChild(para);
@@ -115,6 +119,7 @@ function start(){
 	urlsArray = new Array(ArrayLength);
 	pricesArray = new Array(ArrayLength);
 	wearArray = new Array(ArrayLength);
+	patternArray = new Array(ArrayLength);
 	
 	//Separate From Array
 	for(i = 0; i < ArrayLength; i++){
