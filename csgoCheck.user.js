@@ -22,9 +22,10 @@ var time = 0;
 var hasPrinted = false;
 var clicked = false;
 
-var currentWear = 1;
-var lastWear = 1;
+var currentWear = NaN;
+var lastWear = 2;
 
+var mainInterval;
 var interval = setInterval(tryPutButton(), 3000);
 
 function tryPutButton(){
@@ -60,7 +61,7 @@ function MainManager(){
 		//Get Current Wear Value	
 		var wearValue = document.getElementsByClassName("wear value");
 		currentWear = parseFloat(wearValue[0].innerHTML);
-		
+		console.log("current: " + currentWear);
 		if(!clicked){
 			//
 			var allCheckInputs = document.getElementsByClassName("check-input");
@@ -74,13 +75,15 @@ function MainManager(){
 			allCheckLoadButton[1].click();
 			clicked = true;
 		}else if(time > 20000 || lastWear != currentWear){
+			if(!Number.isNaN(currentWear)){
 			//Get the wear value
-			var wearValue = document.getElementsByClassName("wear value");
-			lastWear = parseFloat(wearValue[0].innerHTML);
-			wearArray[currentArray] = parseFloat(wearValue[0].innerHTML);
+			lastWear = currentWear;
+			console.log("last: " + lastWear);
+			wearArray[currentArray] = currentWear;
 			time = 0;
 			clicked = false;
 			currentArray++;
+			}
 		}
 		console.log("time: " + time);
 		time += timeToRefresh;
@@ -95,6 +98,8 @@ function MainManager(){
 		para.innerHTML = text;
 		document.body.appendChild(para);
 		hasPrinted = true;
+	}else if(currentArray >= ArrayLength && hasPrinted){
+		clearInterval(mainInterval);
 	}
 
 }
@@ -105,6 +110,8 @@ function start(){
 	var splitArray = rawData.split(",");
 	ArrayLength = splitArray.length;
 	
+	clicked = false;
+	currentArrat = 0;
 	urlsArray = new Array(ArrayLength);
 	pricesArray = new Array(ArrayLength);
 	wearArray = new Array(ArrayLength);
@@ -117,5 +124,6 @@ function start(){
 		pricesArray[i] = split[1];
 	}
 	
-	setInterval(function(){MainManager();},timeToRefresh);
+	mainInterval = setInterval(function(){MainManager();},timeToRefresh);
+	
 }
