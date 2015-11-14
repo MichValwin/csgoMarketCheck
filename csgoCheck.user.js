@@ -22,6 +22,8 @@ var time = 0;
 var hasPrinted = false;
 var clicked = false;
 
+var lastWearValue = 1;
+
 var interval = setInterval(tryPutButton(), 300);
 
 function tryPutButton(){
@@ -65,9 +67,10 @@ function MainManager(){
 			//Click on it
 			allCheckLoadButton[1].click();
 			clicked = true;
-		}else if(time > 4100){
+		}else if(time > 20000 || lastWearValue != document.getElementsByClassName("wear value")){
 			//Get the wear value
 			var wearValue = document.getElementsByClassName("wear value");
+			lastWearValue = wearValue;
 			wearArray[currentArray] = parseFloat(wearValue[0].innerHTML);
 			time = 0;
 			clicked = false;
