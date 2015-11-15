@@ -27,10 +27,10 @@ var currentWear = NaN;
 var lastWear = 2;
 
 var mainInterval;
-var interval = setInterval(tryPutButton(), 100);
+
 
 function tryPutButton(){
-    if(document.readyState == "complete" && time > 12000){
+    if(document.readyState == "complete" && time > 2000){
         //Create TextField
         textField = document.createElement('TEXTAREA');
         textField.type = "text";
@@ -59,6 +59,8 @@ function tryPutButton(){
 		console.log("Still loading Page");
 	}
 }
+
+var interval = setInterval(tryPutButton(), 100);
 
 function MainManager(){
 	if(currentArray < ArrayLength){
