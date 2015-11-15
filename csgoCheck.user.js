@@ -27,7 +27,7 @@ var currentWear = NaN;
 var lastWear = 2;
 
 var mainInterval;
-var interval = setInterval(tryPutButton(), 3000);
+var interval = setInterval(tryPutButton(), 100);
 
 function tryPutButton(){
     if(document.readyState == "complete" && time > 12000){
@@ -54,7 +54,8 @@ function tryPutButton(){
 		console.log("Page Loaded");
         clearInterval(interval);
     }else{
-		time += 3000;
+		time += 100;
+		console.log("ALIVE");
 		console.log("Still loading Page");
 	}
 }
