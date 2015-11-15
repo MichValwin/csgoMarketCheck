@@ -28,39 +28,27 @@ var lastWear = 2;
 
 var mainInterval;
 
+//Create TextField
+textField = document.createElement('TEXTAREA');
+textField.type = "text";
+textField.setAttribute('id', 'textInspectData');
+textField.setAttribute('maxlength', 100000);
+textField.setAttribute('cols', 20);
+textField.setAttribute('rows', 1);
+document.body.appendChild(textField);
 
-function tryPutButton(){
-    if(document.readyState == "complete" && time > 2000){
-        //Create TextField
-        textField = document.createElement('TEXTAREA');
-        textField.type = "text";
-        textField.setAttribute('id', 'textInspectData');
-        textField.setAttribute('maxlength', 100000);
-        textField.setAttribute('cols',20);
-        textField.setAttribute('rows', 1);
-        document.body.appendChild(textField);
+//Create Button
+var button = document.createElement('BUTTON');
+button.setAttribute('id', 'ButtonList');
+var t = document.createTextNode("Calculate!");
+button.appendChild(t);
+document.body.appendChild(button);
 
-        //Create Button
-        var button = document.createElement('BUTTON');
-        button.setAttribute('id', 'ButtonList');
-        var t = document.createTextNode("Calculate!"); 
-        button.appendChild(t);
-        document.body.appendChild(button);
+document.getElementById("ButtonList").addEventListener(
+	"click", start, false);
+		
 
-        document.getElementById("ButtonList").addEventListener (
-            "click", start, false
-        );
-		time = 0;
-		console.log("Page Loaded");
-        clearInterval(interval);
-    }else{
-		time += 100;
-		console.log("ALIVE");
-		console.log("Still loading Page");
-	}
-}
 
-var interval = setInterval(tryPutButton(), 100);
 
 function MainManager(){
 	if(currentArray < ArrayLength){
