@@ -30,7 +30,7 @@ var mainInterval;
 var interval = setInterval(tryPutButton(), 3000);
 
 function tryPutButton(){
-    if(document.readyState == "complete"){
+    if(document.readyState == "complete" && time > 12000){
         //Create TextField
         textField = document.createElement('TEXTAREA');
         textField.type = "text";
@@ -50,9 +50,11 @@ function tryPutButton(){
         document.getElementById("ButtonList").addEventListener (
             "click", start, false
         );
+		time = 0;
 		console.log("Page Loaded");
         clearInterval(interval);
     }else{
+		time += 3000;
 		console.log("Still loading Page");
 	}
 }
