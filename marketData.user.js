@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WeaponMarketData
 // @namespace    https://github.com/miguel200761/csgoMarketCheck
-// @version      0.1
+// @version      0.2
 // @description  Gives the data from any csgo weapon into a string
 // @author       Baldbyte ~ Miguel200761
 // @include      http://steamcommunity.com/market/*
@@ -10,32 +10,34 @@
 // @downloadURL  https://raw.githubusercontent.com/miguel200761/csgoMarketCheck/master/marketData.js
 // ==/UserScript==
 
-
+var data;
+var done = false;
 
 //Create Button
 var button = document.createElement('BUTTON');
 button.setAttribute('id', 'ButtonList');
-var t = document.createTextNode("List!"); 
+var t = document.createTextNode("List & Copy!");
 button.appendChild(t);
 document.body.appendChild(button);
 
 document.getElementById("ButtonList").addEventListener (
-    "click", start, false
+    "click", start, true
 );
 
 function start(){
-	var inspectsClass = document.getElementsByClassName("sih-market-action");
+    if(!done){
+	var inspectsClass = document.getElementsByClassName("sih-inspect-magnifier");
 	var pricesClass = document.getElementsByClassName("market_listing_price market_listing_price_with_fee");
 	var inspects = new Array(inspectsClass.length);
 	var prices = new Array(pricesClass.length);
 
-	var data = new Array(inspectsClass.length);
+	data = new Array(inspectsClass.length);
 
 	//Get Values
-	for (i = 0; i < inspectsClass.length; i++) { 
+	for (i = 0; i < inspectsClass.length; i++) {
 		inspects[i] = inspectsClass[i].href;
 	}
-	for (i = 0; i < pricesClass.length; i++) { 
+	for (i = 0; i < pricesClass.length; i++) {
 		prices[i] = pricesClass[i].innerHTML.trim().replace(",", ".");
 	}
 
@@ -54,4 +56,30 @@ function start(){
 	inputArea.setAttribute('type', 'text');
 	inputArea.innerHTML = data;
 	document.body.appendChild(inputArea);
+    
+    copyData();
+    done = true;
+    }
+}
+
+function copyData(){
+  var textArea = document.createElement("textarea");
+
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+  textArea.style.padding = 0;
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+  textArea.style.background = 'transparent';
+
+  textArea.value = data;
+
+  document.body.appendChild(textArea);
+
+    textArea.select();
+    document.execCommand('copy');
 }

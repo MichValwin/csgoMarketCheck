@@ -1,14 +1,19 @@
 /// ==UserScript==
 // @name         WeaponChecker
 // @namespace    https://github.com/miguel200761/csgoMarketCheck
-// @version      0.1
+// @version      0.2
 // @description  Check
 // @author       Baldbyte ~ Miguel200761
-// @match        http://www.csgozone.net/*
+// @include      http://www.csgozone.net/*
+// @include      http://www.csgozone.net/
+// @include      http://www.csgozone.net/#check
 // @grant        none
 // @updateURL    https://github.com/miguel200761/csgoMarketCheck/blob/master/csgoCheck.user.js
 // @downloadURL  https://github.com/miguel200761/csgoMarketCheck/blob/master/csgoCheck.user.js
 // ==/UserScript==
+
+
+
 
 var ArrayLength;
 var textField;
@@ -46,13 +51,12 @@ document.body.appendChild(button);
 
 document.getElementById("ButtonList").addEventListener(
 	"click", start, false);
-		
 
 
 
 function MainManager(){
 	if(currentArray < ArrayLength){
-		//Get Current Wear Value	
+		//Get Current Wear Value
 		var wearValue = document.getElementsByClassName("wear value");
 		currentWear = parseFloat(wearValue[0].innerHTML);
 		console.log("current: " + currentWear);
@@ -60,7 +64,7 @@ function MainManager(){
 			//
 			var allCheckInputs = document.getElementsByClassName("check-input");
 			var allCheckLoadButton = document.getElementsByClassName("check-load-button");
-			
+            
 			//Put the value to inspect
 			allCheckInputs[1].value = "";
 			allCheckInputs[1].value = urlsArray[currentArray];
@@ -92,6 +96,8 @@ function MainManager(){
 		for(i = 0; i < pricesArray.length; i++){
 			text += pricesArray[i] + "  " + wearArray[i] + "     " + patternArray[i] + '<br>';
 		}
+        text += "BEST WEAR: " + '<br>';
+        text += bestWear() + '<br>';
 		para.innerHTML = text;
 		document.body.appendChild(para);
 		hasPrinted = true;
@@ -106,14 +112,13 @@ function start(){
 
 	var splitArray = rawData.split(",");
 	ArrayLength = splitArray.length;
-	
+    
 	clicked = false;
 	currentArrat = 0;
 	urlsArray = new Array(ArrayLength);
 	pricesArray = new Array(ArrayLength);
 	wearArray = new Array(ArrayLength);
 	patternArray = new Array(ArrayLength);
-	
 	//Separate From Array
 	for(i = 0; i < ArrayLength; i++){
 		var split = splitArray[i].split(" ");
@@ -124,4 +129,18 @@ function start(){
 	
 	mainInterval = setInterval(function(){MainManager();},timeToRefresh);
 	
+}
+
+function bestWear(){
+    var best = 0;
+    var bestW = 1.0;  
+    
+    for(i = 0; i < pricesArray.length; i++){
+		if(bestW > wearArray[i]){
+            bestW = wearArray[i];
+            best = i;
+        }
+	}
+    
+    return wearArray[best] + "     " + pricesArray[i];
 }
