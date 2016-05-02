@@ -1,7 +1,7 @@
 /// ==UserScript==
 // @name         WeaponChecker
 // @namespace    https://github.com/miguel200761/csgoMarketCheck
-// @version      0.2
+// @version      0.3
 // @description  Check
 // @author       Baldbyte ~ Miguel200761
 // @include      http://www.csgozone.net/*
@@ -21,6 +21,7 @@ var textField;
 var urlsArray;
 var pricesArray;
 var wearArray;
+var imgArray;
 var patternArray;
 var timeToRefresh = 100;
 var currentArray = 0;
@@ -96,6 +97,7 @@ function MainManager(){
 		for(i = 0; i < pricesArray.length; i++){
 			text += pricesArray[i] + "  " + wearArray[i] + "     " + patternArray[i] + '<br>';
 		}
+        //Best wear
         text += "BEST WEAR: " + '<br>';
         text += bestWear() + '<br>';
 		para.innerHTML = text;
@@ -117,6 +119,7 @@ function start(){
 	currentArrat = 0;
 	urlsArray = new Array(ArrayLength);
 	pricesArray = new Array(ArrayLength);
+    imgArray = new Array(ArrayLength);
 	wearArray = new Array(ArrayLength);
 	patternArray = new Array(ArrayLength);
 	//Separate From Array
@@ -125,7 +128,10 @@ function start(){
 		//Always split must be 2 of length
 		urlsArray[i] = split[0];
 		pricesArray[i] = split[1];
+        imgArray[i] = split[2];
+        console.log(imgArray[i]);
 	}
+    console.log(imgArray.length);
 	
 	mainInterval = setInterval(function(){MainManager();},timeToRefresh);
 	
@@ -141,6 +147,12 @@ function bestWear(){
             best = i;
         }
 	}
-    
-    return wearArray[best] + "     " + pricesArray[i];
+    createImg(imgArray[best]);
+    return wearArray[best] + "     " + pricesArray[best];
+}
+
+function createImg(url){
+    var oImg=document.createElement("img");
+    oImg.setAttribute('src', url);
+    document.body.appendChild(oImg);
 }

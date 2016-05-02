@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WeaponMarketData
 // @namespace    https://github.com/miguel200761/csgoMarketCheck
-// @version      0.2
+// @version      0.3
 // @description  Gives the data from any csgo weapon into a string
 // @author       Baldbyte ~ Miguel200761
 // @include      http://steamcommunity.com/market/*
@@ -28,9 +28,11 @@ function start(){
     if(!done){
 	var inspectsClass = document.getElementsByClassName("sih-inspect-magnifier");
 	var pricesClass = document.getElementsByClassName("market_listing_price market_listing_price_with_fee");
+    var imageClass = document.getElementsByClassName("market_listing_owner_avatar");
 	var inspects = new Array(inspectsClass.length);
 	var prices = new Array(pricesClass.length);
-
+    var images = new Array(imageClass.lenght);
+        
 	data = new Array(inspectsClass.length);
 
 	//Get Values
@@ -40,10 +42,15 @@ function start(){
 	for (i = 0; i < pricesClass.length; i++) {
 		prices[i] = pricesClass[i].innerHTML.trim().replace(",", ".");
 	}
+        
+    for (i = 0; i < imageClass.length; i++) {
+        console.log(imageClass[i].innerHTML);
+		images[i] = getSRC(imageClass[i].innerHTML);
+	}
 
 	//Mount DATA
 	for(i = 0; i < inspectsClass.length; i++){
-		data[i] = inspects[i] + " " +  prices[i];
+		data[i] = inspects[i] + " " +  prices[i] + " " + images[i];
 	}
 
 	var stringData;
@@ -83,3 +90,17 @@ function copyData(){
     textArea.select();
     document.execCommand('copy');
 }
+
+function getSRC(str){
+    var indexStart = str.indexOf('src=');
+    var indexEnd = str.indexOf("jpg",30);
+    
+    
+    indexStart += 5;
+    indexEnd += 3;
+    
+    return str.substr(indexStart,indexEnd - indexStart);
+    
+    
+}
+    
